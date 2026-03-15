@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { ThemeToggle } from "@/components/theme-toggle";
+
 const footerLinks = {
   product: [
     { name: "Features", href: "/features" },
@@ -34,8 +36,8 @@ export function Footer() {
   const pathname = usePathname();
   const currentYear = new Date().getFullYear();
 
-  // Don't show footer on auth pages or dashboard
-  if (pathname?.startsWith("/auth") || pathname?.startsWith("/dashboard")) {
+  // Don't show footer on auth pages
+  if (pathname?.startsWith("/auth")) {
     return null;
   }
 
@@ -125,7 +127,11 @@ export function Footer() {
               <span className="text-sm font-semibold">TaskManager Pro</span>
             </div>
 
-            <div className="text-sm text-muted-foreground text-center md:text-left">
+            <div className="flex justify-center">
+              <ThemeToggle />
+            </div>
+
+            <div className="text-sm text-muted-foreground text-center md:text-right">
               © {currentYear} All Rights Reserved — Made with ❤️ by <span className="font-semibold text-foreground">Uzair</span>
             </div>
           </div>

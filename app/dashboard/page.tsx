@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ThemeToggle } from "@/components/theme-toggle";
+// import { ThemeToggle } from "@/components/theme-toggle"; // Removed as it's in footer
 import { CreateTaskModal } from "@/components/tasks/create-task-modal";
 import { ViewTaskModal } from "@/components/tasks/view-task-modal";
 import { EditTaskModal } from "@/components/tasks/edit-task-modal";
@@ -142,12 +142,12 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 selection:bg-indigo-500/30">
       {/* Floating Background Decorations */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-200/30 to-purple-200/30 dark:from-purple-400/20 dark:to-pink-400/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute top-60 -right-40 w-80 h-80 bg-gradient-to-br from-blue-200/30 to-cyan-200/30 dark:from-blue-400/20 dark:to-indigo-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-gradient-to-br from-purple-200/30 to-pink-200/30 dark:from-indigo-400/20 dark:to-purple-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
+        <div className="absolute top-20 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-100/20 to-purple-100/20 dark:from-indigo-950/40 dark:to-purple-950/40 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-60 -right-40 w-80 h-80 bg-gradient-to-br from-blue-100/20 to-cyan-100/20 dark:from-blue-950/40 dark:to-indigo-950/40 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-gradient-to-br from-purple-100/20 to-pink-100/20 dark:from-indigo-950/40 dark:to-purple-950/40 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
       </div>
 
       {/* Header with Glass Effect */}
@@ -164,12 +164,12 @@ export default function DashboardPage() {
                 Task Manager Pro
               </h1>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl glass">
+            <div className="flex items-center gap-4">
+              <div className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl glass border border-border/50">
                 <UserCircleIcon className="h-5 w-5 text-primary" />
-                <span className="font-medium text-sm">{session.user?.name || session.user?.email}</span>
+                <span className="font-medium text-sm text-foreground">{session.user?.name || session.user?.email}</span>
               </div>
-              <ThemeToggle />
+              {/* ThemeToggle removed - now in footer */}
               <Button
                 variant="outline"
                 size="sm"
@@ -193,10 +193,10 @@ export default function DashboardPage() {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <h2 className="text-4xl font-bold mb-2 text-foreground">
+          <h2 className="text-4xl font-bold mb-2">
             Welcome back, <span className="text-gradient">{session.user?.name?.split(' ')[0] || 'User'}</span>! 👋
           </h2>
-          <p className="text-foreground/70 text-lg">
+          <p className="opacity-70 text-lg">
             {tasks.length === 0
               ? "Let's create your first task to get started"
               : `You have ${tasks.filter(t => t.status !== 'COMPLETED').length} active task${tasks.filter(t => t.status !== 'COMPLETED').length !== 1 ? 's' : ''} to complete`

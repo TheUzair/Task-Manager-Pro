@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
@@ -21,8 +20,8 @@ export function Navbar() {
   const pathname = usePathname();
   const { data: session } = useSession();
 
-  // Don't show navbar on auth pages or dashboard
-  if (pathname?.startsWith("/auth") || pathname?.startsWith("/dashboard")) {
+  // Don't show navbar on auth pages
+  if (pathname?.startsWith("/auth")) {
     return null;
   }
 
@@ -67,9 +66,7 @@ export function Navbar() {
 
           {/* Right side actions */}
           <div className="flex items-center space-x-4">
-            <div className="cursor-pointer">
-              <ThemeToggle />
-            </div>
+
 
             {session ? (
               <Link href="/dashboard">
