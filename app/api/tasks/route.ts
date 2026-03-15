@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
     ]);
 
     // Decrypt descriptions
-    const decryptedTasks = tasks.map(task => ({
+    const decryptedTasks = tasks.map((task: typeof tasks[0]) => ({
       ...task,
       description: task.description ? decrypt(task.description) : null,
     }));
