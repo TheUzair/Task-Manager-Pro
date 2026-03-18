@@ -77,9 +77,9 @@ export function TaskCard({ task, onView, onEdit, onDelete }: TaskCardProps) {
       transition={{ duration: 0.2 }}
       className="h-full"
     >
-      <Card className={`h-full glass hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/30 bg-gradient-to-br ${statusConfig.gradient} relative overflow-hidden group`}>
+      <Card className={`h-full flex flex-col glass hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/30 bg-linear-to-br ${statusConfig.gradient} relative overflow-hidden group`}>
         {/* Decorative Corner Gradient */}
-        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
+        <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-primary/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
 
         <CardHeader className="pb-3 relative z-10">
           <div className="flex items-start justify-between gap-3 mb-2">
@@ -95,7 +95,7 @@ export function TaskCard({ task, onView, onEdit, onDelete }: TaskCardProps) {
           </div>
         </CardHeader>
 
-        <CardContent className="pb-4 relative z-10">
+        <CardContent className="pb-4 relative z-10 flex-1 flex flex-col">
           {task.description ? (
             <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
               {task.description}
@@ -106,13 +106,13 @@ export function TaskCard({ task, onView, onEdit, onDelete }: TaskCardProps) {
             </p>
           )}
 
-          <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground">
+          <div className="flex items-center justify-end gap-2 mt-auto pt-4 text-xs text-muted-foreground text-right">
             <ClockIcon className="h-4 w-4 opacity-70" />
             <span>Created {formatDate(task.createdAt)}</span>
           </div>
         </CardContent>
 
-        <CardFooter className="flex gap-2 pt-4 border-t border-border/50 relative z-10 bg-background/50 backdrop-blur-sm">
+        <CardFooter className="mt-auto flex gap-2 pt-4 border-t border-border/50 relative z-10 bg-background/50 backdrop-blur-sm">
           <Button
             variant="outline"
             size="sm"

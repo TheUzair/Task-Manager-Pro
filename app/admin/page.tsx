@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
@@ -35,7 +34,6 @@ import {
   CheckCircleIcon,
   ClockIcon,
   ExclamationCircleIcon,
-  UserCircleIcon,
   ArrowPathIcon,
 } from "@heroicons/react/24/outline";
 
@@ -218,7 +216,7 @@ export default function AdminPage() {
 
   if (status === "loading" || isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-r from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
         <motion.div
           className="h-14 w-14 border-4 border-indigo-600 border-t-transparent rounded-full"
           animate={{ rotate: 360 }}
@@ -235,22 +233,22 @@ export default function AdminPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
+    <div className="min-h-screen bg-linear-to-r from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
       {/* Background blobs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-200/30 to-purple-200/30 dark:from-purple-900/20 dark:to-pink-900/20 rounded-full blur-3xl" />
-        <div className="absolute top-60 -right-40 w-80 h-80 bg-gradient-to-br from-blue-200/30 to-cyan-200/30 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl" />
+        <div className="absolute top-20 -left-40 w-96 h-96 bg-linear-to-r from-indigo-200/30 to-purple-200/30 dark:from-purple-900/20 dark:to-pink-900/20 rounded-full blur-3xl" />
+        <div className="absolute top-60 -right-40 w-80 h-80 bg-linear-to-r from-blue-200/30 to-cyan-200/30 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-full blur-3xl" />
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-b border-indigo-200/50 dark:border-border shadow-sm">
+      <header className="sticky top-0 z-40 bg-muted/30 border-b border-border backdrop-blur-lg shadow-sm">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-gradient-to-br from-indigo-600 to-purple-600 p-2 rounded-xl shadow-lg">
+            <div className="bg-linear-to-r from-indigo-600 to-purple-600 p-2 rounded-xl shadow-lg">
               <ShieldCheckIcon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="text-xl font-bold bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Admin Control Panel
               </h1>
               <p className="text-xs text-muted-foreground">Task Manager Pro</p>
@@ -303,7 +301,7 @@ export default function AdminPage() {
                 transition={{ delay: i * 0.08 }}
                 className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-2xl p-5 border border-indigo-200/60 dark:border-border shadow-sm"
               >
-                <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center mb-3 shadow`}>
+                <div className={`w-10 h-10 rounded-xl bg-linear-to-r ${card.color} flex items-center justify-center mb-3 shadow`}>
                   <card.icon className="w-5 h-5 text-white" />
                 </div>
                 <p className="text-3xl font-bold text-foreground">{card.value}</p>
@@ -327,8 +325,8 @@ export default function AdminPage() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-6 py-4 text-sm font-medium transition-all cursor-pointer relative ${activeTab === tab.id
-                    ? "text-indigo-600 dark:text-indigo-400"
-                    : "text-muted-foreground hover:text-foreground"
+                  ? "text-indigo-600 dark:text-indigo-400"
+                  : "text-muted-foreground hover:text-foreground"
                   }`}
               >
                 <tab.icon className="w-4 h-4" />
@@ -336,7 +334,7 @@ export default function AdminPage() {
                 {activeTab === tab.id && (
                   <motion.div
                     layoutId="admin-tab"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-indigo-600 to-purple-600"
                   />
                 )}
               </button>
@@ -394,7 +392,7 @@ export default function AdminPage() {
                       <div className="space-y-2">
                         {stats.recentUsers.map((u) => (
                           <div key={u.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-indigo-50/50 dark:hover:bg-indigo-900/10 transition-colors">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                            <div className="w-8 h-8 rounded-full bg-linear-to-r from-indigo-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold shrink-0">
                               {u.name?.[0] ?? u.email[0].toUpperCase()}
                             </div>
                             <div className="flex-1 min-w-0">
@@ -447,7 +445,7 @@ export default function AdminPage() {
                           >
                             <td className="px-4 py-3">
                               <div className="flex items-center gap-2">
-                                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                                <div className="w-8 h-8 rounded-full bg-linear-to-r from-indigo-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold shrink-0">
                                   {u.name?.[0] ?? u.email[0].toUpperCase()}
                                 </div>
                                 <div>
@@ -591,7 +589,7 @@ export default function AdminPage() {
         <DialogContent className="max-w-lg max-h-[85vh] overflow-y-auto glass border-2">
           <DialogHeader>
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+              <div className="w-12 h-12 rounded-full bg-linear-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-white text-lg font-bold shrink-0">
                 {viewUser?.name?.[0] ?? viewUser?.email[0].toUpperCase()}
               </div>
               <div>
@@ -660,7 +658,7 @@ export default function AdminPage() {
             <Button
               onClick={handleRoleUpdate}
               disabled={actionLoading}
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white"
+              className="bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white"
             >
               {actionLoading ? (
                 <motion.div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full mr-2" animate={{ rotate: 360 }} transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} />
@@ -676,7 +674,7 @@ export default function AdminPage() {
         <DialogContent className="max-w-sm glass border-2 border-red-200 dark:border-red-900">
           <DialogHeader>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center shrink-0">
                 <TrashIcon className="w-5 h-5 text-red-600 dark:text-red-400" />
               </div>
               <DialogTitle>Delete User</DialogTitle>
@@ -706,7 +704,7 @@ export default function AdminPage() {
         <DialogContent className="max-w-sm glass border-2 border-red-200 dark:border-red-900">
           <DialogHeader>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center shrink-0">
                 <TrashIcon className="w-5 h-5 text-red-600 dark:text-red-400" />
               </div>
               <DialogTitle>Delete Task</DialogTitle>

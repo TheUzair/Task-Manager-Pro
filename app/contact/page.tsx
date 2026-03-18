@@ -51,7 +51,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -143,7 +143,7 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" disabled={isLoading} className="w-full cursor-pointer bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 hover:scale-105 transition-all shadow-md hover:shadow-lg">
+                <Button type="submit" size="lg" disabled={isLoading} className="w-full cursor-pointer bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 hover:scale-105 transition-all shadow-md hover:shadow-lg">
                   {isLoading ? (
                     <span className="flex items-center gap-2">
                       <motion.div
@@ -195,7 +195,7 @@ export default function ContactPage() {
                 ))}
               </div>
 
-              <div className="p-8 bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-2xl">
+              <div className="p-8 bg-linear-to-br from-blue-600 to-purple-600 text-white rounded-2xl">
                 <h3 className="text-2xl font-bold mb-4">Need immediate help?</h3>
                 <p className="text-blue-100 mb-6">
                   Check out our documentation and FAQs for quick answers to

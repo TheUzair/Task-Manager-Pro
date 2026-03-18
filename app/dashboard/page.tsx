@@ -145,17 +145,17 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 selection:bg-indigo-500/30">
       {/* Floating Background Decorations */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-100/20 to-purple-100/20 dark:from-indigo-950/40 dark:to-purple-950/40 rounded-full blur-3xl animate-float" />
-        <div className="absolute top-60 -right-40 w-80 h-80 bg-gradient-to-br from-blue-100/20 to-cyan-100/20 dark:from-blue-950/40 dark:to-indigo-950/40 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-gradient-to-br from-purple-100/20 to-pink-100/20 dark:from-indigo-950/40 dark:to-purple-950/40 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
+        <div className="absolute top-20 -left-40 w-96 h-96 bg-linear-to-r from-indigo-100/20 to-purple-100/20 dark:from-indigo-950/40 dark:to-purple-950/40 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-60 -right-40 w-80 h-80 bg-linear-to-r from-blue-100/20 to-cyan-100/20 dark:from-blue-950/40 dark:to-indigo-950/40 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-20 left-1/3 w-72 h-72 bg-linear-to-r from-purple-100/20 to-pink-100/20 dark:from-indigo-950/40 dark:to-purple-950/40 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
       </div>
 
       {/* Header with Glass Effect */}
-      <header className="sticky top-0 z-40 glass border-b backdrop-blur-xl">
+      <header className="sticky top-0 z-40 bg-muted/30 border-b border-border backdrop-blur-lg shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="bg-gradient-to-br from-indigo-600 to-purple-600 p-2 rounded-xl shadow-lg">
+              <div className="bg-linear-to-r from-indigo-600 to-purple-600 p-2 rounded-xl shadow-lg">
                 <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                 </svg>
@@ -215,7 +215,7 @@ export default function DashboardPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 onClick={() => setIsCreateModalOpen(true)}
-                className="sm:w-auto w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="sm:w-auto w-full bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 size="lg"
               >
                 <PlusIcon className="h-5 w-5 mr-2" />
@@ -292,7 +292,7 @@ export default function DashboardPage() {
             <div className="max-w-md mx-auto">
               {/* Empty State Icon */}
               <div className="mb-6 relative">
-                <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/20 dark:to-purple-900/20 flex items-center justify-center">
+                <div className="w-32 h-32 mx-auto rounded-full bg-linear-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/20 dark:to-purple-900/20 flex items-center justify-center">
                   <svg className="w-16 h-16 text-indigo-600 dark:text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
@@ -313,7 +313,7 @@ export default function DashboardPage() {
                 <Button
                   onClick={() => setIsCreateModalOpen(true)}
                   size="lg"
-                  className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
                   <PlusIcon className="h-5 w-5 mr-2" />
                   Create Your First Task

@@ -121,7 +121,7 @@ export function Footer() {
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+              <div className="w-6 h-6 rounded-lg bg-linear-to-br from-blue-600 to-purple-600 flex items-center justify-center">
                 <span className="text-white font-bold text-xs">T</span>
               </div>
               <span className="text-sm font-semibold">TaskManager Pro</span>

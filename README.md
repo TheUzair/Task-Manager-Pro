@@ -1,584 +1,240 @@
 # Task Manager Pro 🚀
 
-A production-ready task management application built with Next.js, featuring enterprise-grade security, authentication, and a modern UI.
+Scalable REST API + frontend testing UI built with Next.js, Prisma, PostgreSQL, JWT auth, and role-based access control (USER / ADMIN).
 
-## 🌐 Live Demo
+## 🌐 Live & Repo
 
-**Live URL:** (https://task-manager-pro-sable.vercel.app/)
+- Live URL: https://task-manager-pro-sable.vercel.app/
+- GitHub Repository: https://github.com/TheUzair/Task-Manager-Pro
 
-**GitHub Repository:** (https://github.com/TheUzair/Task-Manager-Pro)
+## ✅ Scope
 
-## ✨ Features
+### Backend (Primary)
 
-### Core Functionality
+- ✅ User registration & login APIs with bcrypt password hashing
+- ✅ JWT authentication (Bearer token) + NextAuth session support
+- ✅ Role-based access control (USER vs ADMIN)
+- ✅ Full CRUD APIs for secondary entity (`tasks`)
+- ✅ API versioning under `/api/v1/*`
+- ✅ Validation + structured error handling with Zod + proper status codes
+- ✅ PostgreSQL database schema with Prisma ORM
+- ✅ API documentation via Postman collection
 
-- ✅ **Full CRUD Operations** - Create, Read, Update, and Delete tasks
-- 🔍 **Advanced Search** - Search tasks by title with real-time filtering
-- 📊 **Status Filtering** - Filter tasks by TODO, IN_PROGRESS, or COMPLETED
-- 📱 **Pagination** - Efficient task listing with pagination support
-- 🌙 **Dark Mode** - Beautiful dark/light theme toggle
-- 🎨 **Modern UI** - Clean, responsive design with Framer Motion animations
+### Frontend (Supportive)
 
-### Security Features
+- ✅ Next.js UI for signup/signin
+- ✅ Protected dashboard UI for authenticated users
+- ✅ CRUD UI for tasks (create/view/edit/delete)
+- ✅ Admin panel UI for role-based admin actions
+- ✅ Toast-based success/error feedback from API responses
 
-- 🔐 **JWT Authentication** - Secure token-based authentication
-- 🍪 **HTTP-only Cookies** - Access tokens stored securely
-- 🔒 **Password Hashing** - bcrypt with salt rounds for password security
-- 🛡️ **AES Encryption** - Sensitive data encrypted at rest
-- ✅ **Input Validation** - Zod schemas for robust validation
-- 🚫 **SQL Injection Prevention** - Prisma ORM prevents SQL injection
-- 👤 **Authorization** - Users can only access their own tasks
-- 🌐 **Social Auth** - Google and GitHub OAuth integration
+### Security & Scalability
 
-### Technical Highlights
+- ✅ JWT signing/verification (`jose`)
+- ✅ Password hashing (`bcryptjs`)
+- ✅ Input validation/sanitization with Zod
+- ✅ Encrypted task descriptions at rest (AES via `crypto-js`)
+- ✅ Modular project structure ready for new domains/modules
+- ⚪ Optional (not implemented): Redis caching / Docker / centralized logging
 
-- ⚡ **Next.js 15** - Latest App Router with Server Components
-- 💾 **PostgreSQL** - Robust relational database
-- 🔧 **Prisma ORM** - Type-safe database access
-- 🎯 **TypeScript** - Full type safety throughout
-- 🎨 **Tailwind CSS** - Modern utility-first styling
-- 🧩 **Shadcn UI** - Beautiful, accessible components
-- 🎭 **Framer Motion** - Smooth animations and transitions
+## 🧱 Tech Stack
 
-## 🏗️ Architecture
-
-### Tech Stack
-
-- **Frontend:** Next.js 15, React, TypeScript, Tailwind CSS
-- **Backend:** Next.js API Routes
-- **Database:** PostgreSQL with Prisma ORM
-- **Authentication:** NextAuth.js v5 (Auth.js)
-- **UI Components:** Shadcn UI, Heroicons
-- **Animations:** Framer Motion
+- **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS v4, Framer Motion
+- **Backend:** Next.js Route Handlers (REST APIs)
+- **Database:** PostgreSQL (Neon) + Prisma v7
+- **Authentication:** NextAuth v5 + custom JWT for API v1
 - **Validation:** Zod
-- **Encryption:** crypto-js (AES-256)
+- **Security:** bcryptjs, jose, AES encryption
 - **Deployment:** Vercel
 
-### Project Structure
+## 🗂️ Project Structure (Key Paths)
 
-```
+```bash
 task-manager-pro/
 ├── app/
 │   ├── api/
-│   │   ├── auth/
-│   │   │   ├── [...nextauth]/route.ts  # NextAuth handler
-│   │   │   └── register/route.ts        # User registration
-│   │   └── tasks/
-│   │       ├── route.ts                 # List & create tasks
-│   │       └── [id]/route.ts            # Get, update, delete task
-│   ├── auth/
-│   │   ├── signin/page.tsx              # Sign in page
-│   │   └── signup/page.tsx              # Sign up page
-│   ├── dashboard/page.tsx               # Main dashboard
-│   ├── layout.tsx                       # Root layout
-│   ├── page.tsx                         # Landing page
-│   └── globals.css                      # Global styles
+│   │   ├── auth/                         # Legacy auth/session routes
+│   │   └── v1/                           # Versioned REST API
+│   │       ├── auth/                     # register/login/me
+│   │       ├── tasks/                    # tasks CRUD
+│   │       └── admin/                    # users/tasks/stats (admin-only)
+│   ├── auth/                             # signin/signup pages
+│   ├── dashboard/                        # user dashboard
+│   ├── admin/                            # admin control panel
+│   └── layout.tsx
 ├── components/
-│   ├── tasks/
-│   │   ├── create-task-modal.tsx        # Create modal
-│   │   ├── edit-task-modal.tsx          # Edit modal
-│   │   ├── view-task-modal.tsx          # View modal
-│   │   ├── delete-task-modal.tsx        # Delete confirmation
-│   │   └── task-card.tsx                # Task card component
-│   ├── ui/                              # Shadcn UI components
-│   ├── auth-provider.tsx                # NextAuth session provider
-│   ├── theme-provider.tsx               # Theme context provider
-│   └── theme-toggle.tsx                 # Dark mode toggle
+│   ├── tasks/                            # task cards + CRUD modals
+│   └── ui/                               # shadcn ui primitives
 ├── lib/
-│   ├── auth.ts                          # NextAuth configuration
-│   ├── prisma.ts                        # Prisma client singleton
-│   ├── encryption.ts                    # AES encryption utilities
-│   ├── validations.ts                   # Zod validation schemas
-│   └── utils.ts                         # Utility functions
+│   ├── auth.ts                           # NextAuth config
+│   ├── jwt.ts                            # custom JWT utilities
+│   ├── api-auth.ts                       # token/session user extraction
+│   ├── rbac.ts                           # requireAuth/requireAdmin
+│   ├── validations.ts                    # Zod schemas
+│   ├── encryption.ts                     # AES encrypt/decrypt
+│   └── prisma.ts                         # Prisma client
 ├── prisma/
-│   └── schema.prisma                    # Database schema
-├── types/
-│   └── next-auth.d.ts                   # NextAuth type extensions
-└── .env                                 # Environment variables
+│   ├── schema.prisma
+│   ├── migrations/
+│   └── seed.ts
+└── public/
+    └── Task-Manager-Pro.postman_collection.json
 ```
 
-### Database Schema
-
-```prisma
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  emailVerified DateTime?
-  image         String?
-  password      String?
-  tasks         Task[]
-  accounts      Account[]
-  sessions      Session[]
-}
-
-model Task {
-  id          String     @id @default(cuid())
-  title       String
-  description String?    @db.Text
-  status      TaskStatus @default(TODO)
-  userId      String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-enum TaskStatus {
-  TODO
-  IN_PROGRESS
-  COMPLETED
-}
-```
-
-## 📋 API Documentation
-
-### Authentication Endpoints
-
-#### Register User
-
-```http
-POST /api/auth/register
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "SecurePass123"
-}
-```
-
-**Response (201):**
-
-```json
-{
-  "message": "User registered successfully",
-  "user": {
-    "id": "clxxx...",
-    "name": "John Doe",
-    "email": "john@example.com",
-    "createdAt": "2026-03-14T..."
-  }
-}
-```
-
-#### Sign In
-
-```http
-POST /api/auth/signin
-Content-Type: application/json
-
-{
-  "email": "john@example.com",
-  "password": "SecurePass123"
-}
-```
-
-### Task Endpoints (Protected)
-
-All task endpoints require authentication via session cookie.
-
-#### Create Task
-
-```http
-POST /api/tasks
-Content-Type: application/json
-
-{
-  "title": "Complete project documentation",
-  "description": "Write comprehensive README",
-  "status": "TODO"
-}
-```
-
-**Response (201):**
-
-```json
-{
-  "message": "Task created successfully",
-  "task": {
-    "id": "clxxx...",
-    "title": "Complete project documentation",
-    "description": "encrypted_string",
-    "status": "TODO",
-    "createdAt": "2026-03-14T...",
-    "updatedAt": "2026-03-14T..."
-  }
-}
-```
-
-#### List Tasks (with pagination & filters)
-
-```http
-GET /api/tasks?page=1&limit=10&status=TODO&search=project
-```
-
-**Response (200):**
-
-```json
-{
-  "tasks": [
-    {
-      "id": "clxxx...",
-      "title": "Complete project documentation",
-      "description": "encrypted_string",
-      "status": "TODO",
-      "createdAt": "2026-03-14T...",
-      "updatedAt": "2026-03-14T..."
-    }
-  ],
-  "pagination": {
-    "total": 25,
-    "page": 1,
-    "limit": 10,
-    "totalPages": 3,
-    "hasNext": true,
-    "hasPrev": false
-  }
-}
-```
-
-#### Get Single Task
-
-```http
-GET /api/tasks/{taskId}
-```
-
-**Response (200):**
-
-```json
-{
-  "task": {
-    "id": "clxxx...",
-    "title": "Complete project documentation",
-    "description": "Write comprehensive README",
-    "status": "TODO",
-    "createdAt": "2026-03-14T...",
-    "updatedAt": "2026-03-14T..."
-  }
-}
-```
-
-#### Update Task
-
-```http
-PUT /api/tasks/{taskId}
-Content-Type: application/json
-
-{
-  "title": "Updated title",
-  "description": "Updated description",
-  "status": "IN_PROGRESS"
-}
-```
-
-**Response (200):**
-
-```json
-{
-  "message": "Task updated successfully",
-  "task": {
-    "id": "clxxx...",
-    "title": "Updated title",
-    "description": "Updated description",
-    "status": "IN_PROGRESS",
-    "createdAt": "2026-03-14T...",
-    "updatedAt": "2026-03-14T..."
-  }
-}
-```
-
-#### Delete Task
-
-```http
-DELETE /api/tasks/{taskId}
-```
-
-**Response (200):**
-
-```json
-{
-  "message": "Task deleted successfully"
-}
-```
-
-### Error Responses
-
-**401 Unauthorized:**
-
-```json
-{
-  "error": "Unauthorized"
-}
-```
-
-**403 Forbidden:**
-
-```json
-{
-  "error": "Forbidden"
-}
-```
-
-**404 Not Found:**
-
-```json
-{
-  "error": "Task not found"
-}
-```
-
-**400 Bad Request:**
-
-```json
-{
-  "error": "Validation failed",
-  "details": [
-    {
-      "path": ["title"],
-      "message": "Title is required"
-    }
-  ]
-}
-```
-
-**500 Internal Server Error:**
-
-```json
-{
-  "error": "Internal server error"
-}
-```
-
-## 🚀 Setup Instructions
-
-### Prerequisites
-
-- Node.js 18+ installed
-- PostgreSQL database (local or cloud)
-- npm or yarn package manager
-
-### Installation Steps
-
-1. **Clone the repository**
-
-   ```bash
-   git clone <repository-url>
-   cd task-manager-pro
-   ```
-
-2. **Install dependencies**
-
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-
-   Create a `.env` file in the root directory:
-
-   ```env
-   # Database
-   DATABASE_URL="postgresql://username:password@localhost:5432/taskmanager"
-
-   # NextAuth
-   NEXTAUTH_SECRET="your-super-secret-nextauth-key-minimum-32-characters"
-   NEXTAUTH_URL="http://localhost:3000"
-
-   # JWT
-   JWT_SECRET="your-super-secret-jwt-key-minimum-32-characters"
-
-   # Encryption (must be 32 characters for AES-256)
-   ENCRYPTION_KEY="your-32-character-encryption-key!"
-
-   # Google OAuth (optional)
-   GOOGLE_CLIENT_ID="your-google-client-id"
-   GOOGLE_CLIENT_SECRET="your-google-client-secret"
-
-   # GitHub OAuth (optional)
-   GITHUB_ID="your-github-app-id"
-   GITHUB_SECRET="your-github-app-secret"
-   ```
-
-4. **Generate Prisma Client**
-
-   ```bash
-   npx prisma generate
-   ```
-
-5. **Run database migrations**
-
-   ```bash
-   npx prisma migrate dev --name init
-   ```
-
-6. **Start the development server**
-
-   ```bash
-   npm run dev
-   ```
-
-7. **Open your browser**
-
-   Navigate to `http://localhost:3000`
-
-### Database Setup Options
-
-#### Option 1: Local PostgreSQL
+## 🗄️ Database Design
+
+### User model (RBAC)
+
+- `role` enum: `USER | ADMIN`
+- Relationship: one user to many tasks
+
+### Task model
+
+- Fields: `title`, `description`, `status`, timestamps
+- `status` enum: `TODO | IN_PROGRESS | COMPLETED`
+- Indexed by `user_id` and `status` for filtering/pagination
+
+## 📘 API Documentation
+
+### Versioning
+
+- Base path: `/api/v1`
+
+### Authentication (v1)
+
+- `POST /api/v1/auth/register`
+- `POST /api/v1/auth/login`
+- `GET /api/v1/auth/me`
+
+### Tasks (v1)
+
+- `GET /api/v1/tasks` (pagination, search, status filter)
+- `POST /api/v1/tasks`
+- `GET /api/v1/tasks/:id`
+- `PUT /api/v1/tasks/:id`
+- `DELETE /api/v1/tasks/:id`
+
+### Admin (v1, ADMIN only)
+
+- `GET /api/v1/admin/stats`
+- `GET /api/v1/admin/users`
+- `GET /api/v1/admin/users/:id`
+- `PATCH /api/v1/admin/users/:id` (role update)
+- `DELETE /api/v1/admin/users/:id`
+- `GET /api/v1/admin/tasks`
+- `DELETE /api/v1/admin/tasks/:id`
+
+### Auth Modes Supported
+
+- **Bearer JWT** from `/api/v1/auth/login`
+- **NextAuth session** (cookie)
+
+### Postman
+
+- Import: `public/Task-Manager-Pro.postman_collection.json`
+- Uses variables:
+  - `{{baseUrl}}` (default: `http://localhost:3000`)
+  - `{{token}}` (auto-set by login request scripts)
+
+## 🚀 Local Setup
+
+### 1) Install
 
 ```bash
-# Install PostgreSQL locally
-# Create a database
-createdb taskmanager
-
-# Update DATABASE_URL in .env
-DATABASE_URL="postgresql://postgres:password@localhost:5432/taskmanager"
+npm install
 ```
 
-#### Option 2: Prisma Postgres (Recommended for quick start)
+### 2) Configure environment
+
+Create `.env.local` (or `.env`) with:
+
+```env
+DATABASE_URL="postgresql://..."
+NEXTAUTH_SECRET="..."
+NEXTAUTH_URL="http://localhost:3000"
+JWT_SECRET="..."
+ENCRYPTION_KEY="your-32-char-key.............."
+
+# Optional OAuth
+GOOGLE_CLIENT_ID="..."
+GOOGLE_CLIENT_SECRET="..."
+GITHUB_ID="..."
+GITHUB_SECRET="..."
+```
+
+### 3) Migrate + seed
 
 ```bash
-npx prisma dev
-# This will start a local Prisma Postgres instance
+npx prisma migrate dev
+npm run seed
 ```
 
-#### Option 3: Cloud Database (Neon, Supabase, Railway, etc.)
-
-- Create a PostgreSQL database on your preferred cloud provider
-- Copy the connection string to `.env`
-
-## 🔒 Security Implementation
-
-### 1. Authentication & Authorization
-
-- **JWT Tokens:** Signed with HS256 algorithm
-- **HTTP-only Cookies:** Prevents XSS attacks
-- **Secure Flag:** Enabled in production
-- **Password Hashing:** bcrypt with 12 salt rounds
-- **Session Validation:** Server-side session checks
-
-### 2. Data Encryption
-
-- **Algorithm:** AES-256-CBC
-- **Implementation:** Task descriptions encrypted at rest
-- **Key Management:** Environment variables
-
-### 3. Input Validation
-
-- **Zod Schemas:** Type-safe validation
-- **SQL Injection:** Prevented by Prisma parameterized queries
-- **XSS Prevention:** React's built-in escaping
-- **CSRF Protection:** NextAuth CSRF tokens
-
-### 4. Authorization
-
-- **Row-level Security:** Users can only access their own tasks
-- **Ownership Verification:** Every API call verifies task ownership
-- **Session-based Auth:** Server-side session validation
-
-## 🎨 UI/UX Features
-
-- **Responsive Design:** Mobile-first approach
-- **Dark Mode:** System preference detection with manual toggle
-- **Loading States:** Spinners on all async operations
-- **Error Handling:** User-friendly error messages
-- **Animations:** Smooth transitions with Framer Motion
-- **Modals:** Centered, scrollable, accessible
-- **Form Validation:** Real-time client-side validation
-- **Toast Notifications:** Success/error feedback
-
-## 📝 Development Scripts
+### 4) Run app
 
 ```bash
-# Development
-npm run dev          # Start dev server
-
-# Production
-npm run build        # Build for production
-npm run start        # Start production server
-
-# Database
-npx prisma generate  # Generate Prisma Client
-npx prisma migrate dev  # Run migrations
-npx prisma studio    # Open Prisma Studio
-npx prisma db push   # Push schema changes
-
-# Code Quality
-npm run lint         # Run ESLint
+npm run dev
 ```
 
-## 🚀 Deployment to Vercel
+Open: `http://localhost:3000`
 
-1. **Push code to GitHub**
+## 👤 Seed Accounts
 
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin <your-github-repo>
-   git push -u origin main
-   ```
+- Admin: `admin@taskmanagerpro.com` / `Admin@123456`
+- User: `alice@example.com` / `User@123456`
+- User: `bob@example.com` / `User@123456`
+- User: `carol@example.com` / `User@123456`
 
-2. **Deploy to Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Import your GitHub repository
-   - Configure environment variables
-   - Deploy!
+## 🧪 Functional Frontend Coverage
 
-3. **Environment Variables on Vercel**
+- Register + login forms
+- Authenticated dashboard
+- Task CRUD with modal workflows
+- Status/search/pagination controls
+- Admin panel for users/tasks/stats
+- Error/success toasts
 
-   Add all variables from your `.env` file:
-   - `DATABASE_URL`
-   - `NEXTAUTH_SECRET`
-   - `NEXTAUTH_URL` (set to your Vercel URL)
-   - `JWT_SECRET`
-   - `ENCRYPTION_KEY`
-   - Add OAuth credentials if using social login
+## 🔐 Security Practices Implemented
 
-4. **Database Connection**
-   - Use a cloud PostgreSQL provider (Neon, Supabase, Railway)
-   - Update `DATABASE_URL` in Vercel environment variables
+- bcrypt password hashing (12 rounds)
+- JWT token signing/verification (jose)
+- RBAC checks on protected APIs
+- Zod request validation
+- Encrypted task descriptions in DB
+- Prisma ORM (prevents raw SQL injection patterns by default)
 
-## 🧪 Testing the Application
+## 📈 Scalability Notes
 
-### Manual Testing Checklist
+Current structure is monolithic but modular and ready to scale:
 
-- [ ] User registration with validation
-- [ ] User login with credentials
-- [ ] Social login (Google/GitHub)
-- [ ] Create task with all fields
-- [ ] View task details in modal
-- [ ] Edit task with prefilled values
-- [ ] Delete task with confirmation
-- [ ] Search tasks by title
-- [ ] Filter tasks by status
-- [ ] Pagination navigation
-- [ ] Dark/light theme toggle
-- [ ] Responsive design on mobile
-- [ ] Loading states on all actions
-- [ ] Error handling and messages
+1. **Versioned APIs** (`/api/v1`) allow non-breaking future iterations (`/api/v2`)
+2. **RBAC + auth abstraction** (`lib/api-auth.ts`, `lib/rbac.ts`) reusable across modules
+3. **Domain separation** (`auth`, `tasks`, `admin`) supports extraction into services later
+4. **Database indexes** on high-frequency query columns (`user_id`, `status`)
+5. **Next steps for high scale:** Redis caching, queue-based background jobs, centralized logging, containerized deployment
 
-## 🤝 Contributing
+## ✅ Evaluation Criteria Mapping
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+- ✅ API design: REST endpoints, status codes, modular route structure, versioning
+- ✅ Database design: normalized Prisma schema + migrations + seed data
+- ✅ Security: JWT, hashing, RBAC, validation, encrypted sensitive fields
+- ✅ Frontend integration: auth + protected dashboard + CRUD + admin management
+- ✅ Deployment readiness: production deploy on Vercel + Postman API docs
 
-## 📄 License
+## 📝 Scripts
 
-This project is licensed under the MIT License.
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+npm run seed
+```
 
 ## 👤 Author
-
-**Your Name**
 
 - GitHub: [@TheUzair](https://github.com/TheUzair)
 - Email: mohujer90@gmail.com
 
-## 🙏 Acknowledgments
-
-- Next.js team for the amazing framework
-- Vercel for hosting
-- Shadcn for beautiful UI components
-- Prisma for the excellent ORM
-
 ---
 
-**Built with ❤️ using Next.js, TypeScript, and modern web technologies**
+Built with Next.js, TypeScript, Prisma, and PostgreSQL.
